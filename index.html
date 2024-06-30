@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf App</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="add-book">
+      <input type="text" id="book-title" placeholder="Judul Buku">
+      <input type="text" id="book-author" placeholder="Penulis">
+      <button onclick="addBook()">Tambah Buku</button>
+    </div>
+
+    <div class="container">
+      <div class="shelf" id="shelf1">
+        <h2>Belum Selesai Dibaca</h2>
+        <ul id="unfinished-books" class="book-list"></ul>
+      </div>
+      <div class="shelf" id="shelf2">
+        <h2>Selesai Dibaca</h2>
+        <ul id="finished-books" class="book-list"></ul>
+      </div>
+    </div>
+
+    <div class="author-info">
+      <p>Demetrio Julian ~ 2024</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
