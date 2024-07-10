@@ -1,22 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  justify-content: center;
   background-color: #f0f0f0;
+  padding: 20px;
 }
 
 .container {
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
 }
 
 .shelf {
-  margin: 20px;
+  flex: 1 1 300px;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.shelf h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
 }
 
 .book-list {
@@ -25,21 +44,49 @@ body {
 }
 
 .book-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.book-list li:hover {
+  background-color: #ececec;
+}
+
+.book-list button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-list button:hover {
+  background-color: #ddd;
 }
 
 .add-book {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 .add-book input, .add-book button {
-  padding: 8px;
-  margin-right: 10px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px;
+}
+
+.add-book input:focus {
+  border-color: #4CAF50;
 }
 
 .add-book button {
@@ -54,7 +101,7 @@ body {
 }
 
 .author-info {
-  margin-top: auto;
+  margin-top: 20px;
   text-align: center;
   font-size: 14px;
   color: #666;
