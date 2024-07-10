@@ -48,6 +48,7 @@ function addBook() {
   const title = document.getElementById('book-title').value;
   const author = document.getElementById('book-author').value;
   const year = parseInt(document.getElementById('book-year').value);
+  const isComplete = document.getElementById('book-is-complete').checked;
 
   if (title && author && year) {
     const newBook = {
@@ -55,13 +56,18 @@ function addBook() {
       title,
       author,
       year,
-      isComplete: false
+      isComplete
     };
-    unfinishedBooks.push(newBook);
+    if (isComplete) {
+      finishedBooks.push(newBook);
+    } else {
+      unfinishedBooks.push(newBook);
+    }
     renderBooks();
     document.getElementById('book-title').value = '';
     document.getElementById('book-author').value = '';
     document.getElementById('book-year').value = '';
+    document.getElementById('book-is-complete').checked = false;
   }
 }
 
@@ -99,6 +105,38 @@ function deleteBook(bookId, shelf) {
       renderBooks();
     }
   }
+}
+
+function searchBook() {
+  const searchTitle = document.getElementById('search-title').value.toLowerCase();
+  const allBooks = unfinishedBooks.concat(finishedBooks);
+  const searchResult = allBooks.filter(book => book.title.toLowerCase().includes(searchTitle));
+
+  const unfinishedBooksList = document.getElementById('unfinished-books');
+  const finishedBooksList = document.getElementById('finished-books');
+
+  unfinishedBooksList.innerHTML = '';
+  finishedBooksList.innerHTML = '';
+
+  searchResult.forEach(book => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="book-info">
+        <strong>${book.title}</strong><br>
+        <span>Penulis: ${book.author}</span><br>
+        <span>Tahun: ${book.year}</span>
+      </div>
+      <div class="book-actions">
+        <button class="btn-move" onclick="moveBook(${book.id}, '${book.isComplete ? 'finished' : 'unfinished'}', '${book.isComplete ? 'unfinished' : 'finished'}')">${book.isComplete ? 'Belum Selesai' : 'Selesai'}</button>
+        <button class="btn-delete" onclick="deleteBook(${book.id}, '${book.isComplete ? 'finished' : 'unfinished'}')">Hapus</button>
+      </div>
+    `;
+    if (book.isComplete) {
+      finishedBooksList.appendChild(li);
+    } else {
+      unfinishedBooksList.appendChild(li);
+    }
+  });
 }
 
 renderBooks();

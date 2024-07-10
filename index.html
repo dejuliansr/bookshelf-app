@@ -7,27 +7,34 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="add-book">
-      <input type="text" id="book-title" placeholder="Judul Buku">
-      <input type="text" id="book-author" placeholder="Penulis">
-      <input type="number" id="book-year" placeholder="Tahun Terbit">
-      <button onclick="addBook()">Tambah Buku</button>
+    <div class="add-book" data-testid="bookForm">
+      <input type="text" id="book-title" placeholder="Judul Buku" data-testid="bookFormTitleInput">
+      <input type="text" id="book-author" placeholder="Penulis" data-testid="bookFormAuthorInput">
+      <input type="number" id="book-year" placeholder="Tahun Terbit" data-testid="bookFormYearInput">
+      <input type="checkbox" id="book-is-complete" data-testid="bookFormIsCompleteCheckbox">
+      <label for="book-is-complete">Selesai Dibaca</label>
+      <button onclick="addBook()" data-testid="bookFormSubmitButton">Tambah Buku</button>
+    </div>
+
+    <div class="search-book" data-testid="searchBookForm">
+      <input type="text" id="search-title" placeholder="Cari Judul Buku" data-testid="searchBookFormTitleInput">
+      <button onclick="searchBook()" data-testid="searchBookFormSubmitButton">Cari Buku</button>
     </div>
 
     <div class="container">
       <div class="shelf" id="shelf1">
         <h2>Belum Selesai Dibaca</h2>
-        <ul id="unfinished-books" class="book-list"></ul>
+        <ul id="unfinished-books" class="book-list" data-testid="incompleteBookList"></ul>
       </div>
       <div class="shelf" id="shelf2">
         <h2>Selesai Dibaca</h2>
-        <ul id="finished-books" class="book-list"></ul>
+        <ul id="finished-books" class="book-list" data-testid="completeBookList"></ul>
       </div>
     </div>
 
-    <siv class="author-info">
+    <div class="author-info">
       <p>Demetrio Julian ~ 2024</p>
-    </siv>
+    </div>
 
     <script src="script.js"></script>
   </body>
